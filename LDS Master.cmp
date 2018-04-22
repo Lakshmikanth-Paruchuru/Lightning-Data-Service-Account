@@ -1,0 +1,12 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="view" type="string" default="mainView"/>  
+    <aura:if isTrue="{!v.view == 'mainView'}">
+        <c:ldsview recordId="{!v.recordId}" renderVal="{!v.view}"/>
+    </aura:if>
+    <aura:if isTrue="{!v.view == 'editView'}">
+        <c:ldsedit recordId="{!v.recordId}" renderVal="{!v.view}"/>
+    </aura:if>
+    <aura:if isTrue="{!v.view =='delView'}">
+        <c:ldsdelete recordId="{!v.recordId}" renderVal="{!v.view}"/>
+    </aura:if>
+</aura:component>

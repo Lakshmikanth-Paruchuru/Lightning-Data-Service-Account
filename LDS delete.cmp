@@ -1,0 +1,33 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute name="recordError" type="String" access="private"/>
+      <aura:attribute name="renderVal" type="string"/>
+
+    <force:recordData aura:id="recordHandler"
+        recordId="{!v.recordId}"
+        fields="Id"
+        targetError="{!v.recordError}"
+        recordUpdated="{!c.handleRecordUpdated}" />
+
+    <!-- Display Lightning Data Service errors, if any -->
+    <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            <ui:message title="Error" severity="error" closable="true">
+                {!v.recordError}
+            </ui:message>
+        </div>
+    </aura:if>
+<div class="slds-text-body_regular slds-text-align_center">
+    Are you sure that you want to delete the record?
+    </div>
+    <br/> <br/> <br/>
+    <div class="slds-form-element">
+        <lightning:button
+            label="Delete Record"
+            onclick="{!c.handleDeleteRecord}"
+            variant="brand" />
+        <lightning:button
+            label="Cancel"
+            onclick="{!c.cancelRecord}"
+             />
+    </div>
+</aura:component>

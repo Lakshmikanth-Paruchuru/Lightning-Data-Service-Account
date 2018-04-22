@@ -1,0 +1,33 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="recordInfo" type="object"/>
+    <aura:attribute name="simpleRecord" type="object"/>
+    <aura:attribute name="recordError" type="string"/>
+    <aura:attribute name="renderVal" type="string"/>
+    <aura:attribute name="recordId" type="string"/>
+    <force:recordData aura:id="edithandler"
+                      targetRecord="{!v.recordInfo}"
+                      targetFields="{!v.simpleRecord}"
+                      recordId="{!v.recordId}"
+                      targetError="{!v.recordError}"
+                      layoutType="FULL"
+                      mode="EDIT"/>
+    <div class="slds-form-element">
+        <lightning:input label="Acount name" value="{!v.simpleRecord.Name}"/>
+    </div>
+    <div class="slds-form-element">
+        <lightning:input label="Description" value="{!v.simpleRecord.Description}"/>
+    </div>
+    <div class="slds-form-element">
+     <lightning:select  label="Industry" value="{!v.simpleRecord.Industry}">
+                <option value="">choose one...</option>
+                <option value="Banking">Banking</option>
+                <option value="Apparel">Apparel</option>
+                <option value="Education">Education</option>
+            </lightning:select>
+    </div>
+    <div class="slds-form-element">
+        <lightning:button label="save" variant="brand" onclick="{!c.saveRecord}"/>
+                <lightning:button label="Cancel" onclick="{!c.cancelRecord}"/>
+
+    </div>
+</aura:component>
